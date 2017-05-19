@@ -5,6 +5,6 @@ import testReducer from "./ducks/testReducer";
 
 
 
-export default createStore(counter);
-//testReducer breaks the code when I pass ass a param. 
+export default createStore(combineReducers({counter, testReducer}));
+//testReducer breaks the code when I pass ass a param.
 //how do i use combine reducers or use import mulitple reducers to my app.js

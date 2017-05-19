@@ -7,13 +7,14 @@ const CHANGE_NUMBER = "CHANGE_NUMBER"
 
 // state
 const initialState = {
-  number: 7
+  number: 15
 }
 
 
 
 //reducers
 export default function reducer(state=initialState, action){
+  console.log("friday", action);
   switch(action.type){
     case CHANGE_NUMBER:
 

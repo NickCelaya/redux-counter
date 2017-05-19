@@ -14,7 +14,7 @@ export class App extends Component {
 					<div className="counter__button-wrapper">
 						<button
 							className="counter__button increment-one"
-							onClick={ () => this.props.changeNumber(this.props.number + 1) }
+							onClick={ () => this.props.test(this.props.number + 1) }
 						>
 							+1
 						</button>
@@ -65,9 +65,15 @@ export class App extends Component {
 
 
 function mapStateToProps(state){
+	console.log("mapStateToProps", state);
+	if(state.counter.number > state.testReducer.number){
+		return{
+			number: state.counter.number,
+		}
+	}
 	return{
-		number: state.number
+		number:state.testReducer.number
 	}
 }
 
-export default connect(mapStateToProps, {changeNumber})(App);
+export default connect(mapStateToProps, {changeNumber, test})(App);
