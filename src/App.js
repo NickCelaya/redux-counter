@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { changeNumber } from './ducks/counter';
+import { test } from './ducks/testReducer';
 
 import "./App.css";
 
@@ -7,29 +10,29 @@ export class App extends Component {
 		return (
 			<div className="app">
 				<section className="counter">
-					<h1 className="counter__current-value">{ 0 }</h1>
+					<h1 className="counter__current-value">{ this.props.number}</h1>
 					<div className="counter__button-wrapper">
 						<button
 							className="counter__button increment-one"
-							onClick={ () => null }
+							onClick={ () => this.props.changeNumber(this.props.number + 1) }
 						>
 							+1
 						</button>
 						<button
 							className="counter__button increment-five"
-							onClick={ () => null }
+							onClick={ () => this.props.changeNumber(this.props.number + 5) }
 						>
 							+5
 						</button>
 						<button
 							className="counter__button decrement-one"
-							onClick={ () => null }
+							onClick={ () => this.props.changeNumber(this.props.number - 1) }
 						>
 							-1
 						</button>
 						<button
 							className="counter__button decrement-five"
-							onClick={ () => null }
+							onClick={ () => this.props.changeNumber(this.props.number - 5) }
 						>
 							-5
 						</button>
@@ -60,4 +63,11 @@ export class App extends Component {
 	}
 }
 
-export default App;
+
+function mapStateToProps(state){
+	return{
+		number: state.number
+	}
+}
+
+export default connect(mapStateToProps, {changeNumber})(App);
